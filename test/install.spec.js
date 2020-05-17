@@ -1,5 +1,6 @@
 import { DEFAULT_PLUGIN_CONFIG } from '../src/helpers/defaults'
-import { install } from '../src/install'
+import { install, ERRORS as INSTALL_ERRORS } from '../src/install'
+import { ConfigError } from '../src/core/exceptions/ConfigError'
 
 let Vue = null
 
@@ -48,11 +49,13 @@ describe('plugin installation', () => {
     const {
       prototype: { auth }
     } = DEFAULT_PLUGIN_CONFIG
-    expect(() => (Vue.prototype[auth] = {})).toThrow(TypeError)
+    expect(() => (Vue.prototype[auth] = {})).toThrow()
   })
 
   it('throws error if strategy config is undefined in plugin config', () => {
-    expect(() => install(Vue, {})).toThrow(Error)
+    expect(() => install(Vue, {})).toThrowError(
+      new ConfigError(INSTALL_ERRORS.NO_DEF_IN_CONFIG('strategy'))
+    )
   })
 })
 

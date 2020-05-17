@@ -1,20 +1,19 @@
-import _Vue from 'vue'
-
 import { Auth } from './core/auth'
+import { ConfigError } from './core/exceptions/ConfigError'
 import { DEFAULT_PLUGIN_CONFIG } from './helpers/defaults'
 import { AuthStrategy } from './types/AuthModule'
 import { GenericObject } from './types/globals'
 import { PluginConfig } from './types/PluginConfig'
+import { VueConstructor } from './types/VueConstructor'
 
 // tslint:disable-next-line: no-var-requires
 const _merge = require('lodash.merge')
 
-export const install = (Vue: typeof _Vue, config: PluginConfig): void => {
+export const install = (Vue: VueConstructor, config: PluginConfig): void => {
   config = _merge(config, DEFAULT_PLUGIN_CONFIG) as PluginConfig
 
-  // strategy is a required plugin config
   if (config.strategy === undefined) {
-    throw Error()
+    throw new ConfigError(ERRORS.NO_DEF_IN_CONFIG('strategy'))
   }
 
   const scheme: GenericObject = config.scheme
@@ -26,4 +25,9 @@ export const install = (Vue: typeof _Vue, config: PluginConfig): void => {
       return auth
     }
   })
+}
+
+export const ERRORS = {
+  NO_DEF_IN_CONFIG: (prop: string) =>
+    `required property ${prop} is not defined in plugin options`
 }

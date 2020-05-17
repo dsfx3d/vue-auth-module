@@ -67,8 +67,7 @@
     "webpack-cli": "3.3.10"
   },
   "dependencies": {
-    "lodash.merge": "4.6.2",
-    "vue": "2.6.11"
+    "lodash.merge": "4.6.2"
   },
   "config": {
     "commitizen": {
