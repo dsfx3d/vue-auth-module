@@ -1,0 +1,81 @@
+{
+  "name": "vue-auth-module",
+  "version": "0.0.0-development",
+  "description": "",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "build/"
+  ],
+  "scripts": {
+    "setup:release": "npm run commitizen:setup && npm run semantic-release:setup",
+    "commitizen:setup": "commitizen init cz-conventional-changelog --save-dev --exact --force",
+    "semantic-release:setup": "npx semantic-release-cli setup",
+    "semantic-release": "semantic-release",
+    "lint": "prettier --check \"src/**/*.ts\"",
+    "lint:fix": "tslint --fix -p ./",
+    "test": "jest --coverage",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "babel src --out-dir build --extensions \".ts,.tsx\" --source-maps inline",
+    "prebuild": "npm run lint && rm -rf build",
+    "build": "npm run build:types && npm run build:js && touch build/.eslintrc",
+    "bundle": "npm run build && webpack",
+    "precommit": "npm run lint && npm run test",
+    "commit": "git-cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dsfx3d/vue-auth-module.git"
+  },
+  "keywords": [
+    "typescript",
+    "babel",
+    "jest",
+    "prettier",
+    "travis-ci",
+    "npm-package",
+    "scaffold",
+    "boilerplate"
+  ],
+  "author": "dsfx3d <dsfx3d@gmail.com> (https://dsfx3d.me/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dsfx3d/vue-auth-module/issues"
+  },
+  "homepage": "https://github.com/dsfx3d/vue-auth-module#readme",
+  "devDependencies": {
+    "@babel/cli": "7.8.3",
+    "@babel/core": "7.8.3",
+    "@babel/plugin-proposal-class-properties": "7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "7.8.3",
+    "@babel/preset-env": "7.8.7",
+    "@babel/preset-typescript": "7.8.3",
+    "@types/jest": "24.0.25",
+    "@types/node": "13.1.6",
+    "babel-loader": "8.0.6",
+    "cz-conventional-changelog": "3.0.2",
+    "ghooks": "2.0.4",
+    "jest": "24.9.0",
+    "prettier": "1.19.1",
+    "semantic-release": "^16.0.1",
+    "ts-jest": "24.3.0",
+    "tslint": "5.20.1",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-plugin-prettier": "2.1.0",
+    "typescript": "3.7.4",
+    "webpack": "4.41.5",
+    "webpack-cli": "3.3.10"
+  },
+  "dependencies": {
+    "lodash.merge": "4.6.2",
+    "vue": "2.6.11"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "resolutions": {
+    "@babel/preset-env": "7.5.5"
+  }
+}
