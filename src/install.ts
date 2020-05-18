@@ -27,6 +27,9 @@ export const install = (Vue: VueConstructor, config: PluginConfig): void => {
   })
 }
 
+/**
+ * error messages thrown in this module
+ */
 export const ERRORS = {
   NO_DEF_IN_CONFIG: (prop: string) =>
     `required property ${prop} is not defined in plugin options`
