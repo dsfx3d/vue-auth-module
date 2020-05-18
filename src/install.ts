@@ -6,7 +6,6 @@ import { GenericObject } from './types/globals'
 import { PluginConfig } from './types/PluginConfig'
 import { VueConstructor } from './types/VueConstructor'
 
-// tslint:disable-next-line: no-var-requires
 const _merge = require('lodash.merge')
 
 export const install = (Vue: VueConstructor, config: PluginConfig): void => {

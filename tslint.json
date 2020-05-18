@@ -8,6 +8,7 @@
     "interface-name": [true, "never-prefix"],
     "no-empty-interface": false,
     "no-shadowed-variable": false,
-    "variable-name": false
+    "variable-name": false,
+    "no-var-requires": false
   }
 }
