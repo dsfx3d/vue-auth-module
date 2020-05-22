@@ -4,6 +4,7 @@ import { GenericObject } from './globals'
 export interface PluginConfig {
   prototype?: PrototypePluginConfig
   scheme?: GenericObject
+  store?: any
   strategy: AuthStrategy
 }
 
